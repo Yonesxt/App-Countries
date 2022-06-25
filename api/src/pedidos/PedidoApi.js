@@ -6,7 +6,7 @@ const getAll =  async function () {
   //   return res.send("funciona si");
     // pedido a la api
     const respuesta = await axios(API_URL_PEOPLE);
- respuesta.data.map(c=>(
+    respuesta.data.map(c=>(
       Country.findOrCreate({
         where: { nombre: c.name.common },
         defaults:{
@@ -23,8 +23,7 @@ const getAll =  async function () {
 const getAllDB =  async function (req, res, next) {
   //   return res.send("funciona si");
     // pedido a la api
-    console.log(req.query)
-    getAll()
+    await getAll()
     try {
        if (Object.keys(req.query).length) {
       //   // si hay query hay que filtrar
