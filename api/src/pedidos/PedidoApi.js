@@ -1,7 +1,7 @@
 var axios = require('axios')
 const { Country, Actividad }  = require('../db.js');
 
-const API_URL_PEOPLE = 'https://restcountries.com/v3/all';
+const API_URL_PEOPLE = 'http://restcountries.com/v3/all';
 const getAll =  async function () {
   //   return res.send("funciona si");
     // pedido a la api
@@ -25,7 +25,7 @@ const getAllDB =  async function (req, res, next) {
     // pedido a la api
     await getAll()
     try {
-       if (Object.keys(req.query).length) {
+       if (Object.values(req.query)[0]) {
       //   // si hay query hay que filtrar
       //   // where === donde
          Country.findAll({
@@ -38,13 +38,19 @@ const getAllDB =  async function (req, res, next) {
           }
         }).then((respuesta) =>
          {let country = respuesta.filter(elemento=>elemento[Object.keys(req.query)[0]].toLowerCase()===Object.values(req.query)[0].toLowerCase())
-          res.json(country);
+          res.status(200).json(country);
         });
        } else {
-        // si no hay query debo enviar todos
-        // findAll() === SELECT * FROM Character;
-        Country.findAll().then(country=>{
-          res.json(country)
+        Country.findAll({
+          include: {
+            model: Actividad,
+            atributes: [ ["nombre", "dificultad", "duracion","temporada"]],
+            through:{
+              atributes:[]
+              }
+          }
+        }).then(country=>{
+          res.status(200).json(country)
         });
       }
       } catch (error) {
@@ -65,7 +71,7 @@ const getId = async function (req, res, next){
     if (!Ciudad.length) {
         return res.status(404).json({message: `error 404, country not found with id ${id}`});
     }
-    return res.send(Ciudad);
+    return res.send(Ciudad[0]);
     } catch (error) {
         next(error)
     }
@@ -90,15 +96,15 @@ const getActividad =  async function (req, res, next) {
   }
 }
 const postActividad =  async function (req, res, next) {
-  const {  nombre, dificultad, duracion,temporada } = req.body.Actividad;
-  const country=req.body.Country.name;
-  if (!nombre || !dificultad || !duracion|| !temporada)
+  const {  nombre, dificultad, duracion,temporada } = req.body;
+  var {ciudad , ... newActividad}=req.body;
+  if (!nombre || !dificultad || !duracion|| !temporada|| !ciudad)
     return res.status(404).send("Falta enviar datos obligatorios");
     try {
-      const actividad = await Actividad.create({ ...req.body.Actividad });
+      const actividad = await Actividad.create({ ...newActividad });
       const Country_Actividad = await Country.findAll({ 
         where:{
-          nombre: country
+          nombre: ciudad
         }
       })
     await actividad.addCountry(Country_Actividad);
@@ -110,7 +116,7 @@ const postActividad =  async function (req, res, next) {
 }
 const deleteActividad = async function (req, res, next) {
   try {
-    let ID = req.params.id
+    let ID = Number(req.params.id)
     Actividad.destroy({
         where: {
             id: ID

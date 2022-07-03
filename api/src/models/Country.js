@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
       get() {
         // 100 ---> "100 ,2"
         const Area = this.getDataValue("area");
-        return Area ? `${Area} Km^2` : null;
+        return Area ? `${Area} Km²` : null;
       },
     },
     poblacion:{
