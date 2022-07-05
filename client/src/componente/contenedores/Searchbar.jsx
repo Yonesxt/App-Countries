@@ -4,13 +4,12 @@ import { filterContinent, Order, GetName, filterActivity } from '../../redux/act
 import s from "./css/Searchbar.module.css"
 
 
-export default function Searchbar() {
+export default function Searchbar({paginate}) {
   const [name, setname] = useState('')
   const ActivitiesStatus = useSelector(state => state.actividad)
   const dispatch = useDispatch()
 
   function handleChange(e) {
-    e.preventDefault()
     setname(e.target.value)
   }
   function handlesubmit(e) {
@@ -19,12 +18,15 @@ export default function Searchbar() {
   }
   function handleFilterContinent(e) {
     dispatch(filterContinent(e.target.value))
+    paginate(1)
   }
   function handleOrder(e) {
     dispatch(Order(e.target.value))
+    paginate(1)
   }
   function handleFilterActivity(e) {
     dispatch(filterActivity(e.target.value))
+    paginate(1)
   }
   return (
     <div>

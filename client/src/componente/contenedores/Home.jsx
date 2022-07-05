@@ -21,16 +21,15 @@ function Home() {
   const indexLastCountries = currentpage * countriesperpage;
   const indexFirtsCountries = indexLastCountries - countriesperpage;
   const currentCountries = countries.slice(indexFirtsCountries, indexLastCountries);
-  const paginate = (n) => setcurrentpage(n)
   return (
     <div className={h.fondo}>
       <div><Nav /></div>
-      <div><Searchbar /></div>
+      <div><Searchbar paginate={setcurrentpage} /></div>
       <div>
         <Countrys country={currentCountries} />
       </div>
       <div>
-        <Pagination countriesperpage={countriesperpage} totalCountries={countries.length} paginate={paginate} />
+        <Pagination countriesperpage={countriesperpage} totalCountries={countries.length} paginate={setcurrentpage} />
       </div>
     </div>
   );

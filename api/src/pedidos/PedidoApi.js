@@ -38,6 +38,8 @@ const getAllDB =  async function (req, res, next) {
           }
         }).then((respuesta) =>
          {let country = respuesta.filter(elemento=>elemento[Object.keys(req.query)[0]].toLowerCase()===Object.values(req.query)[0].toLowerCase())
+          if (!country.length>0) 
+            return  res.status(404).json({message: "Error 404 database not found"});
           res.status(200).json(country);
         });
        } else {

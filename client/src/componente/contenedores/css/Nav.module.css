@@ -4,6 +4,7 @@
   padding: 0px;
   display: flex;
   justify-content: flex-end;
+  
 }
 
 a {
@@ -26,4 +27,13 @@ a {
 .li span:hover {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+}
+
+@media screen and (max-width:700px)  {
+  .lista {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.8);
+  }
+    
 }

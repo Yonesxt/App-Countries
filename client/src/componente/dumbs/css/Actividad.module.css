@@ -80,3 +80,27 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+@media screen and (max-width:700px)  {
+  .crear {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 80px 0px 0px 0px;
+  }
+  .contenedor{
+    width: 95%;
+  }
+  .actividad{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .imgciudad{
+    width: 95%;
+  }
+}

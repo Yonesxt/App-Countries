@@ -39,7 +39,7 @@ export function GetName(name){
           type: BUSQUEDA,
           payload: res.data
       }))
-      .catch(error => window.alert(error))
+      .catch(error=> window.alert(`Error: ${name} no se encuentra en la base de datos`))
   }
 }
 export function filterActivity(payload){

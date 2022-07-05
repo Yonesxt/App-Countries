@@ -44,3 +44,10 @@
   background-color: #0099CC;
   background-color: rgba(red, green, blue, 0.205);
 }
+
+@media screen and (max-width:700px)  {
+  #ul {
+    justify-content: space-around;
+  }
+    
+}
