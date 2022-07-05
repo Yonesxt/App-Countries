@@ -59,7 +59,7 @@
 .actividad{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
   align-items: flex-start;
 }
