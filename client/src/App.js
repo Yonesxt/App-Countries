@@ -10,13 +10,13 @@ function App() {
   return (
     <div className="App">
       <Switch>
-      <Route  exact path="/" component={kickOff} />
-      <Route  exact path="/Ciudad" component={Home} />
-      <Route  exact path="/Ciudad/:id" component={Detail} />
-      <Route  exact path="/Actividad" component={Actividad} />
-      <Route  exact path="/Actividad/crear" component={Form} />
-      <Route><Error /></Route>
-    </Switch>
+        <Route  exact path="/" component={kickOff} />
+        <Route  exact path="/Ciudad" component={Home} />
+        <Route  exact path="/Ciudad/:id" component={Detail} />
+        <Route  exact path="/Actividad" component={Actividad} />
+        <Route  exact path="/Actividad/crear" component={Form} />
+        <Route><Error /></Route>
+      </Switch>
     </div>
   );
 }

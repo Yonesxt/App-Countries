@@ -64,7 +64,7 @@ const Form = () => {
   const handleInputCountry = function (e) {
     e.preventDefault();
     if (Object.values(Actividad.ciudad).includes(e.target.value)) {
-      alert("Esta ciudad ya se encuentra en la lista")
+      alert("Esta marca ya se encuentra en la lista")
     }
     else {
       setInput({
@@ -126,6 +126,7 @@ const Form = () => {
             <option name="5" value="5">5</option>
           </select>
           {errors.dificultad && <p className={s.danger}>{errors.dificultad}</p>}
+
           <input required="required" max="10" min="1" className={s.input} type="number" name='duracion' placeholder='duracion de 1 a 10 horas' value={Actividad.name} onChange={handleInputChange} />
           {errors.duracion && <p className={s.danger}> {errors.duracion}</p>}
           <select required className={s.select} name="temporada" onChange={handleInputChange}>

@@ -3,6 +3,9 @@ import Nav from "./Nav"
 import Error from "./Error"
 import { Link } from 'react-router-dom'
 import s from './css/Detail.module.css'
+
+
+
 class Detail extends React.Component {
   constructor(props) {
     super(props);

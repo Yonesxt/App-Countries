@@ -21,6 +21,7 @@ function Home() {
   const indexLastCountries = currentpage * countriesperpage;
   const indexFirtsCountries = indexLastCountries - countriesperpage;
   const currentCountries = countries.slice(indexFirtsCountries, indexLastCountries);
+
   return (
     <div className={h.fondo}>
       <div><Nav /></div>
@@ -28,7 +29,7 @@ function Home() {
       <div>
         <Countrys country={currentCountries} />
       </div>
-      <div>
+       <div>
         <Pagination countriesperpage={countriesperpage} totalCountries={countries.length} paginate={setcurrentpage} />
       </div>
     </div>
